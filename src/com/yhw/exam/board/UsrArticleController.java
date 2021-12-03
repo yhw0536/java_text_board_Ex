@@ -28,21 +28,13 @@ public class UsrArticleController {
   }
 
   public void actionDetail(Rq rq) {
-    Map<String, String> params = rq.getParams();
+    int id = rq.getIntParam("id", 0);
 
-    if (params.containsKey("id") == false) {
-      System.out.println("id를 입력해주세요.");
+    if (id==0) {
+      System.out.println("id를 올바르게 입력해주세요.");
       return;
     }
 
-    int id = 0;
-
-    try {
-      id = Integer.parseInt(params.get("id"));
-    } catch (NumberFormatException e) {
-      System.out.println("id를 정수형태로 입력해주세요.");
-      return;
-    }
     if (id > articles.size()) {
       System.out.println("게시물이 존재하지 않습니다.");
       return;
